@@ -2,8 +2,9 @@
 {
     public class Employee
     {
-        string LastName;
-        string FirstName;
-        decimal Salary;
+        public int Id;
+        public string LastName;
+        public string FirstName;
+        public decimal Salary;
     }
 }
