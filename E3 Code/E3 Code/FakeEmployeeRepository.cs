@@ -6,11 +6,13 @@ namespace E3_Code
     {
         Dictionary<int, Employee> Employees = new Dictionary<int, Employee>();
 
-        FakeEmployeeRepository()
+        public FakeEmployeeRepository()
         {
             // Add some default employees to work with
-            Employees.Add(1, new Employee { Id = 1, LastName = "Bishop", FirstName = "Barb" });
-            Employees.Add(2, new Employee { Id = 2, LastName = "Bishop", FirstName = "Dave" });
+            Employees.Add(1, new Employee { Id = 1, LastName = "Bishop", FirstName = "Barb",
+                                            Salary = 100000.00M});
+            Employees.Add(2, new Employee { Id = 2, LastName = "Bishop", FirstName = "Dave",
+                                            Salary = 99999.00M});
         }
         public void Save(Employee Emp)
         {
