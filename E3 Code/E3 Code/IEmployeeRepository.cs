@@ -4,8 +4,9 @@ namespace E3_Code
 {
     public interface IEmployeeRepository
     {
-        void Save(Employee Emp);
+        int Save(Employee Emp);
         List<Employee> GetAll();
         decimal GetSalary(int Id);
+        Employee GetById(int Id);
     }
 }

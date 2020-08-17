@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-
 namespace E3_Code
 {
     public class FakeEmployeeRepository : IEmployeeRepository
     {
         Dictionary<int, Employee> Employees = new Dictionary<int, Employee>();
-
         public FakeEmployeeRepository()
         {
             // Add some default employees to work with
@@ -14,9 +12,24 @@ namespace E3_Code
             Employees.Add(2, new Employee { Id = 2, LastName = "Bishop", FirstName = "Dave",
                                             Salary = 99999.00M});
         }
-        public void Save(Employee Emp)
+       private int GetNextId()
         {
+            int curMaxId = 0;
+            foreach (KeyValuePair<int, Employee> keyValuePair in Employees)
+            {
+                if (keyValuePair.Key > curMaxId)
+                {
+                    curMaxId = keyValuePair.Key;
+                }
+            }
+            return ++curMaxId;
+        }
+        public int Save(Employee Emp)
+        {
+            int Id = GetNextId();
+            Emp.Id = Id;
             Employees.Add(Emp.Id, Emp);
+            return Id;
         }
         public List<Employee> GetAll()
         {
@@ -36,6 +49,12 @@ namespace E3_Code
                 salary = emp.Salary;
             }
             return salary;
+        }
+        public Employee GetById(int Id)
+        {
+            Employee emp;
+            bool ignore = Employees.TryGetValue(Id, out emp);
+            return emp;
         }
     }
 }
